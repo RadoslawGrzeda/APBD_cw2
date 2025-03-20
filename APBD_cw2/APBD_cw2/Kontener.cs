@@ -1,25 +1,38 @@
+using System.Reflection.Metadata.Ecma335;
+
 namespace APBD_cw2;
 
 public class Kontener
 {
-    private char Type = 'K';
-    private double masa=0;
-    private double wysokosc=0;
-    private double masaWlasna;
-    private double wysokoscWlasna;
-    private string numerSeryjny;
-    private double maksymalnaLadownosc;
+    private static char Type = 'K';
     private static int counter = 1;
+    public double masa { get; set; } = 0;
+    public double masaWlasna { get; set; }
+    public double wysokosc { get; } = 0;
+    public string numerSeryjny { get; }
 
-    public Kontener(double masaWlasna,double wysokoscWlasna,double maksymalnaLadownosc)
-    {  
+    public void Dotankuj(double mas) 
+    {
+        this.masa += mas;
+        if (this.masa > this.maksymalnaLadownosc)
+            throw new OverfillException("Przeciążony");
+    }
+
+    public double wysokoscWlasna { get; set; }
+
+    public double maksymalnaLadownosc { get; set; }
+
+    public Kontener(double masaWlasna, double wysokoscWlasna, double maksymalnaLadownosc)
+    {
         this.masaWlasna = masaWlasna;
         this.wysokoscWlasna = wysokoscWlasna;
         this.maksymalnaLadownosc = maksymalnaLadownosc;
-        this.numerSeryjny = "KON-" + this.Type +'-'+ counter.ToString();
+        numerSeryjny = "KON-" + Type + '-' + counter.ToString();
+        counter++;
     }
 
-    public string getNumerSeryjny()
+    public void OproznijKontener()
     {
-        get 
+        this.masa = 0;
     }
+}
