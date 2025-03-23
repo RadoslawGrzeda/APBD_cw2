@@ -13,10 +13,13 @@ public class Kontener
     public double glebokosc { get; set; }
     public string numerSeryjny { get; set; }
 
-    public virtual void Dotankuj(double mas) 
+    public virtual void Dotankuj(double mas)
     {
-        this.masa += mas;
-        if (this.masa > this.maksymalnaLadownosc)
+        var roz = maksymalnaLadownosc - masa;
+        if (mas <= roz)
+        {
+            this.masa += mas;
+        }else 
             throw new OverfillException("Przeciążony");
     }
 
@@ -35,7 +38,7 @@ public class Kontener
 
    
 
-    public void OproznijKontener()
+    public virtual void OproznijKontener()
     {
         this.masa = 0;
     }

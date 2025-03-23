@@ -17,22 +17,38 @@ using APBD_cw2;
 //     kon3.Dotankuj(10);
 //     Console.WriteLine(kon3.masa);
 //     kon3.Dotankuj(3);
-//     Console.WriteLine(kon3.masa);
+//     Console.WriteLine(kon3.masa); 
 //     // kon3.Dotankuj(3);
 // }
 // catch (OverfillException e)
 // { 
 //     Console.WriteLine(e);
 // }
+//
+// KontenerNaPlyny konNa1 = new KontenerNaPlyny(false,100,1000,1000,20);
+// try
+// {
+//     konNa1.Dotankuj(10);
+//     Console.WriteLine(konNa1.masa);
+//     konNa1.Dotankuj(7);
+// }
+// catch (OverfillException e)
+// {
+//     Console.WriteLine(e);
+// }
 
-KontenerNaPlyny konNa1 = new KontenerNaPlyny(false,1000,1000,20);
+KontenerChlodniczy kon=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
+KontenerChlodniczy ko2=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
+
 try
 {
-    konNa1.Dotankuj(10);
-    Console.WriteLine(konNa1.masa);
-    konNa1.Dotankuj(7);
+ // ?   kon.Dotankuj(11);
+    // kon.Dotankuj(10);
+    // Console.WriteLine(kon.masa);
+    Console.WriteLine(kon.numerSeryjny);
+    Console.WriteLine(ko2.numerSeryjny);
 }
 catch (OverfillException e)
 {
-    Console.WriteLine(e);
+    Console.WriteLine(e.Message);
 }
