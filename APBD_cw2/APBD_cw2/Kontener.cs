@@ -4,14 +4,16 @@ namespace APBD_cw2;
 
 public class Kontener
 {
-    private static char Type = 'K';
-    private static int counter = 1;
+    protected static int counter = 1;
+    protected static char Type = 'K';
+
     public double masa { get; set; } = 0;
     public double masaWlasna { get; set; }
     public double wysokosc { get; } = 0;
-    public string numerSeryjny { get; }
+    public double glebokosc { get; set; }
+    public string numerSeryjny { get; set; }
 
-    public void Dotankuj(double mas) 
+    public virtual void Dotankuj(double mas) 
     {
         this.masa += mas;
         if (this.masa > this.maksymalnaLadownosc)
@@ -22,14 +24,16 @@ public class Kontener
 
     public double maksymalnaLadownosc { get; set; }
 
-    public Kontener(double masaWlasna, double wysokoscWlasna, double maksymalnaLadownosc)
-    {
+    public Kontener(double masaWlasna, double wysokoscWlasna, double maksymalnaLadownosc,double glebokosc)
+    {   this.glebokosc = glebokosc;
         this.masaWlasna = masaWlasna;
         this.wysokoscWlasna = wysokoscWlasna;
         this.maksymalnaLadownosc = maksymalnaLadownosc;
         numerSeryjny = "KON-" + Type + '-' + counter.ToString();
         counter++;
     }
+
+   
 
     public void OproznijKontener()
     {
