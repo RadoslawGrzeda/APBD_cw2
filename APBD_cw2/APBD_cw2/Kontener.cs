@@ -42,4 +42,9 @@ public class Kontener
     {
         this.masa = 0;
     }
+
+    public override string ToString()
+    {
+        return $"Kontener: {numerSeryjny} waga wlansa {masaWlasna}, masa ladunku {masa}";
+    }
 }

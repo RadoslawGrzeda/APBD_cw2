@@ -37,18 +37,33 @@ using APBD_cw2;
 //     Console.WriteLine(e);
 // }
 
-KontenerChlodniczy kon=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
+KontenerChlodniczy kon=new KontenerChlodniczy("baNan",13.3,0,10,10,10);
 KontenerChlodniczy ko2=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
+KontenerChlodniczy ko3=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
 
-try
-{
- // ?   kon.Dotankuj(11);
-    // kon.Dotankuj(10);
-    // Console.WriteLine(kon.masa);
-    Console.WriteLine(kon.numerSeryjny);
-    Console.WriteLine(ko2.numerSeryjny);
-}
-catch (OverfillException e)
-{
-    Console.WriteLine(e.Message);
-}
+
+Kontenerowiec konten = new Kontenerowiec(12, 32, 2112);
+// konten.zaladuj(ko2);
+Console.WriteLine(kon.ToString());
+Console.WriteLine(ko2.ToString());
+// Console.WriteLine(kon.ToString());
+kon.Dotankuj(5);
+konten.zaladuj(kon);
+
+Console.WriteLine();
+// Console.WriteLine(konten.aktualnaWaga);
+// Console.WriteLine(konten.naPokladzie);
+// konten.ZastapKontener("KON-C-1",ko3);
+konten.OStatku();
+// try
+// {
+//  // ?   kon.Dotankuj(11);
+//     // kon.Dotankuj(10);
+//     // Console.WriteLine(kon.masa);
+//     Console.WriteLine(kon.numerSeryjny);
+//     Console.WriteLine(ko2.numerSeryjny);
+// }
+// catch (OverfillException e)
+// {
+//     Console.WriteLine(e.Message);
+// }
