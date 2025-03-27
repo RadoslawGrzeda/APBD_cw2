@@ -25,7 +25,7 @@ public class KontenerNaGaz : Kontener,IHazardNotifier
         Console.WriteLine($"NiebezpiecznaSytuacjaWKontenerze: {numerSeryjny}");
     }
 
-    public override void Dotankuj(double mas)
+    public override void Zaladowanie(double mas)
     {
         var roz = maksymalnaLadownosc - masa;
         if (roz >= mas)

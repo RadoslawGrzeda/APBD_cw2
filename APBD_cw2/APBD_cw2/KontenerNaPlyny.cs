@@ -3,12 +3,11 @@ namespace APBD_cw2;
 public class KontenerNaPlyny : Kontener, IHazardNotifier
 {
     private bool? niebezpiecznyLadunek { get; set; }
-
     protected static new int counter = 1;
     protected static new char Type = 'L';
-
-
-    public KontenerNaPlyny(bool niebezpiecznyLadunek,double masaWlasna, double wysokoscWlasna, double maksymalnaLadownosc,double glebokosc) : base(glebokosc,masaWlasna, wysokoscWlasna, maksymalnaLadownosc)
+    // protected double masa { get; set; } = 0;
+    public KontenerNaPlyny(bool niebezpiecznyLadunek,double masaWlasna, double wysokoscWlasna, double maksymalnaLadownosc,double glebokosc) 
+        : base(masaWlasna, wysokoscWlasna, maksymalnaLadownosc,glebokosc)
     {
         this.niebezpiecznyLadunek=niebezpiecznyLadunek;
         masa = 0;
@@ -23,38 +22,34 @@ public class KontenerNaPlyny : Kontener, IHazardNotifier
         counter++;
     }
 
-    public void DangerousSituation(string dangerousSituation)
-    {
-        Console.WriteLine(dangerousSituation);
-    }
-
     public void DangerousSituation()
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"NiebezpiecznaSytuacja {numerSeryjny}");
     }
-
-    public override void Dotankuj(double mas)
+    
+    public override void Zaladowanie(double mas)
     {
         switch (niebezpiecznyLadunek)
         {
             case true:
-                if (mas < (maksymalnaLadownosc / 2) - masa)
+                if (mas <= (maksymalnaLadownosc / 2) - masa)
                 {
-                    masa += mas;
+                    this.masa += mas;
                 }
-                else throw new OverfillException("ZaDużeDoładowanie");
+                else {throw new OverfillException("ZaDużeZaladowanie");}
 
                 break;
             case false:
-                if (mas < (maksymalnaLadownosc*0.9) - masa)
+                if (mas <= (maksymalnaLadownosc*0.9) - masa)
                 {
-                    masa += mas;
+                    this.masa += mas;
                 }
-                else throw new OverfillException("ZaDużeDoładowanie");
-
+                else 
+                {throw new OverfillException("ZaDużeZaladowanie2");}
                 break;
+            
             case null:
-               DangerousSituation("NiebezpiecznaOperacjaNieznanyŁadunekTypPlynowKontenera");
+               DangerousSituation();
                 break;
             default:
                 Console.WriteLine("cosnietak");
