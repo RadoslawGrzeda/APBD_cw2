@@ -11,16 +11,16 @@ public class Kontenerowiec
 
     public int naPokladzie { get; set; } = 0;
     public double aktualnaWaga { get; set; } = 0;
-
-    public Kontenerowiec(double maxPredkosc, int maxLiczbaKonetenerow,
-        double maxWagaKontenerow)
+    private string nazwa { get; set; }
+    private List<Kontener> kontenerwoiec = new List<Kontener>();
+    public Kontenerowiec(string nazwa,double maxPredkosc, int maxLiczbaKonetenerow,
+        double maxWagaKontenerowWTonach)
     {
+        this.nazwa = nazwa;
         this.maxPredkosc = maxPredkosc;
         this.maxLiczbaKonetenerow = maxLiczbaKonetenerow;
-        this.maxWagaKontenerow = maxWagaKontenerow;
+        this.maxWagaKontenerow = maxWagaKontenerowWTonach * 1000;
     }
-
-    private List<Kontener> kontenerwoiec = new List<Kontener>();
 
     public void zaladuj(Kontener kontener)
     {
@@ -37,6 +37,17 @@ public class Kontenerowiec
         }
     }
 
+    public  void zaladujKilka(List<Kontener> kontener)
+    {
+        foreach (var VARIABLE in kontener)
+        {
+            zaladuj(VARIABLE);
+        }
+
+    }
+
+
+
     public void UsunKontener(Kontener kontener)
     {
         if (kontenerwoiec.Contains(kontener))
@@ -44,7 +55,7 @@ public class Kontenerowiec
             kontenerwoiec.Remove(kontener);
 
 
-            maxWagaKontenerow -= (kontener.masa + kontener.masaWlasna);
+            aktualnaWaga -= (kontener.masa + kontener.masaWlasna);
             naPokladzie--;
 
         }
@@ -85,12 +96,29 @@ public class Kontenerowiec
         }
     }
 
-    
 
-    public void  OStatku()
+    public static void PrzeniesLadunek(Kontenerowiec kon1, Kontenerowiec kon2, Kontener kon)
+    {
+        kon1.UsunKontener(kon);
+        
+        var roz = kon2.maxWagaKontenerow - kon2.aktualnaWaga;
+        if ((kon.masa + kon.masaWlasna) <= roz)
+        {
+            kon2.zaladuj(kon);
+            }
+        else
+        {
+            Console.WriteLine("PrzeniesienieNiemozliwe");
+        }
+
+    }
+
+
+
+public void  OStatku()
     {
         Console.WriteLine(
-            $"Kontenerowiec: kontenerow {naPokladzie}, o wadze {aktualnaWaga}");
+            $"Kontenerowiec:{nazwa},  kontenerow {naPokladzie}, o wadze {aktualnaWaga}");
         foreach (var variable in kontenerwoiec)
         {
             Console.WriteLine(variable);

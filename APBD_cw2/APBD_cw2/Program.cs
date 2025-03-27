@@ -37,24 +37,46 @@ using APBD_cw2;
 //     Console.WriteLine(e);
 // }
 
-KontenerChlodniczy kon=new KontenerChlodniczy("baNan",13.3,0,10,10,10);
+KontenerChlodniczy kon=new KontenerChlodniczy("baNan",13.3,5,10,10,10);
 KontenerChlodniczy ko2=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
-KontenerChlodniczy ko3=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
+// KontenerChlodniczy ko3=new KontenerChlodniczy("baNan",13.3,10,10,10,10);
+KontenerNaGaz konNaGaz = new KontenerNaGaz(100, 10, 1000, 10);
+KontenerNaPlyny kontNaPlyny = new KontenerNaPlyny(100, 10, 1000, 10);
 
 
-Kontenerowiec konten = new Kontenerowiec(12, 32, 2112);
-// konten.zaladuj(ko2);
-Console.WriteLine(kon.ToString());
-Console.WriteLine(ko2.ToString());
-// Console.WriteLine(kon.ToString());
-kon.Dotankuj(5);
+Kontenerowiec konten = new Kontenerowiec("Konten1",12, 4, 2112);
+Kontenerowiec konten2 = new Kontenerowiec("Konten2",12, 4, 2112);
+
 konten.zaladuj(kon);
+konten.zaladuj(ko2);
+konten.zaladuj(konNaGaz);
 
+konten.OStatku();
 Console.WriteLine();
+konten2.zaladuj(konNaGaz);
+konten2.zaladuj(kontNaPlyny);
+konten2.OStatku();
+
+Kontenerowiec.PrzeniesLadunek(konten,konten2,kon);
+Console.WriteLine("============================");
+
+
+konten.OStatku();
+Console.WriteLine();
+
+konten2.OStatku();
+// konten.zaladuj(ko2);
+// Console.WriteLine(kon.ToString());
+// Console.WriteLine(ko2.ToString());
+// Console.WriteLine(kon.ToString());
+// kon.Dotankuj(5);
+// konten.zaladuj(kon);
+//
+// Console.WriteLine();
 // Console.WriteLine(konten.aktualnaWaga);
 // Console.WriteLine(konten.naPokladzie);
 // konten.ZastapKontener("KON-C-1",ko3);
-konten.OStatku();
+// konten.OStatku();
 // try
 // {
 //  // ?   kon.Dotankuj(11);
